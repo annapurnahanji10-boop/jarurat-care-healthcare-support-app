@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Request Submitted | Jarurat Care</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            🏥 Jarurat Care
+        </a>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/support">
+                Patient Support
+            </a>
+
+            <a href="/chatbot">
+                AI Assistant
+            </a>
+
+            <a href="/admin">
+                Dashboard
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- SUCCESS SECTION -->
+
+    <main class="success-page">
+
+        <div class="success-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <div class="success-badge">
+                SUPPORT REQUEST RECEIVED
+            </div>
+
+            <h1>
+                Thank You,
+                <span>{{ name }}</span> 💙
+            </h1>
+
+            <p class="success-message">
+
+                Your Patient Support Request has been
+                successfully submitted to Jarurat Care.
+
+            </p>
+
+
+            <!-- STATUS -->
+
+            <div class="success-status">
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Request Submitted
+                        </strong>
+
+                        <small>
+                            Your information was received successfully.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Request Stored
+                        </strong>
+
+                        <small>
+                            Your request has been saved for review.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        →
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Support Team Review
+                        </strong>
+
+                        <small>
+                            The support team can review your request.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="success-actions">
+
+                <a href="/support"
+                   class="success-primary">
+
+                    📝 Submit Another Request
+
+                </a>
+
+
+                <a href="/"
+                   class="success-secondary">
+
+                    ← Back to Home
+
+                </a>
+
+            </div>
+
+
+            <p class="success-note">
+
+                🔒 Please continue to use trusted healthcare
+                professionals for medical advice.
+
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🏥 Jarurat Care
+        </div>
+
+        <p>
+            Healthcare Support Assistant
+        </p>
+
+        <small>
+            © 2026 Jarurat Care
+        </small>
+
+    </footer>
+
+
+</body>
+
+</html>

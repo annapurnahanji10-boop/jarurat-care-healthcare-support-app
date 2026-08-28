@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Jarurat Care</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="admin-body">
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        🏥 Jarurat Care
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Home
+        </a>
+
+        <a href="/support">
+            Patient Support
+        </a>
+
+        <a href="/chatbot">
+            AI Assistant
+        </a>
+
+        <a href="/admin" class="active">
+            Dashboard
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     DASHBOARD HEADER
+===================================================== -->
+
+<main class="admin-container">
+
+    <section class="admin-header">
+
+        <div>
+
+            <span class="admin-badge">
+                ● ADMIN CONSOLE
+            </span>
+
+            <h1>
+                Support
+                <span>Dashboard</span>
+            </h1>
+
+            <p>
+                Monitor and manage patient support requests
+                submitted through Jarurat Care.
+            </p>
+
+        </div>
+
+
+        <div class="admin-live">
+
+            <span class="live-dot"></span>
+
+            System Online
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================= -->
+
+    <section class="stats-grid">
+
+
+        <!-- TOTAL -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📋
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    TOTAL REQUESTS
+                </span>
+
+                <h2>
+                    {{ total_requests }}
+                </h2>
+
+                <p>
+                    All submitted requests
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- DATABASE -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💾
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    DATABASE
+                </span>
+
+                <h2>
+                    SQLite
+                </h2>
+
+                <p>
+                    Local request storage
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUPPORT -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💙
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    SUPPORT
+                </span>
+
+                <h2>
+                    Active
+                </h2>
+
+                <p>
+                    Patient support system
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <span class="stat-label">
+                    AI ASSISTANT
+                </span>
+
+                <h2>
+                    Online
+                </h2>
+
+                <p>
+                    FAQ automation active
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         REQUEST SECTION
+    ================================================= -->
+
+    <section class="requests-section">
+
+
+        <div class="requests-header">
+
+            <div>
+
+                <span class="section-label">
+                    PATIENT REQUESTS
+                </span>
+
+                <h2>
+                    Recent Support Requests
+                </h2>
+
+                <p>
+                    Review requests submitted by patients.
+                </p>
+
+            </div>
+
+
+            <a href="/support"
+               class="new-request-btn">
+
+                + New Request
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TABLE
+        ================================================= -->
+
+        {% if requests %}
+
+        <div class="table-wrapper">
+
+            <table class="requests-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            PATIENT
+                        </th>
+
+                        <th>
+                            AGE
+                        </th>
+
+                        <th>
+                            PHONE
+                        </th>
+
+                        <th>
+                            LOCATION
+                        </th>
+
+                        <th>
+                            SUPPORT REQUIREMENT
+                        </th>
+
+                        <th>
+                            SUBMITTED
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for item in requests %}
+
+                    <tr>
+
+                        <!-- ID -->
+
+                        <td>
+
+                            <span class="request-id">
+
+                                #{{ item["id"] }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- NAME -->
+
+                        <td>
+
+                            <div class="patient-info">
+
+                                <div class="patient-avatar">
+
+                                    {{ item["name"][0]|upper }}
+
+                                </div>
+
+                                <strong>
+
+                                    {{ item["name"] }}
+
+                                </strong>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- AGE -->
+
+                        <td>
+
+                            {{ item["age"] }}
+
+                        </td>
+
+
+                        <!-- PHONE -->
+
+                        <td>
+
+                            {{ item["phone"] }}
+
+                        </td>
+
+
+                        <!-- LOCATION -->
+
+                        <td>
+
+                            📍 {{ item["location"] }}
+
+                        </td>
+
+
+                        <!-- ISSUE -->
+
+                        <td>
+
+                            <div class="issue-text">
+
+                                {{ item["issue"] }}
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- DATE -->
+
+                        <td>
+
+                            <span class="date-badge">
+
+                                {{ item["created_at"] }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- DELETE -->
+
+                        <td>
+
+                            <form
+                                action="{{ url_for('delete_request', request_id=item['id']) }}"
+                                method="POST"
+                                onsubmit="return confirm('Are you sure you want to delete this support request?');">
+
+                                <button
+                                    type="submit"
+                                    class="delete-btn">
+
+                                    🗑️ Delete
+
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================= -->
+
+        <div class="empty-state">
+
+            <div class="empty-icon">
+                📭
+            </div>
+
+            <h3>
+                No Support Requests Yet
+            </h3>
+
+            <p>
+                Patient support requests will appear here
+                after they are submitted.
+            </p>
+
+            <a href="/support"
+               class="new-request-btn">
+
+                Create First Request →
+
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </section>
+
+
+
+    <!-- =================================================
+         DASHBOARD INFO
+    ================================================= -->
+
+    <section class="dashboard-info">
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🔒
+            </div>
+
+            <div>
+
+                <h3>
+                    Data Management
+                </h3>
+
+                <p>
+                    Support requests are stored in the
+                    application's SQLite database and can
+                    be reviewed by the support team.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h3>
+                    Automated Support
+                </h3>
+
+                <p>
+                    The Jarurat Care FAQ Assistant provides
+                    quick responses to common healthcare
+                    support questions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        🏥 Jarurat Care
+    </div>
+
+    <p>
+        Healthcare Support Assistant
+    </p>
+
+    <small>
+        © 2026 Jarurat Care | Admin Console
+    </small>
+
+</footer>
+
+
+</body>
+
+</html>

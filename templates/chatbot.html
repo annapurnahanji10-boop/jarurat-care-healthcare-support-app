@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jarurat Care | AI Healthcare Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="chatbot-page">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            🏥 Jarurat Care
+        </a>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/support">Patient Support</a>
+            <a href="/chatbot" class="active">AI Assistant</a>
+            <a href="/admin">Dashboard</a>
+        </div>
+
+    </nav>
+
+
+    <!-- ================= AI SECTION ================= -->
+
+    <main>
+
+        <section class="ai-wrapper">
+
+            <!-- LEFT SIDE -->
+
+            <div class="ai-intro">
+
+                <div class="ai-status">
+                    <span class="status-dot"></span>
+                    AI ASSISTANT ONLINE
+                </div>
+
+                <h1>
+                    Healthcare
+                    <span>Support, Simplified.</span>
+                </h1>
+
+                <p>
+                    Ask a general healthcare-support question and
+                    Jarurat Care's assistant will provide a quick,
+                    helpful response.
+                </p>
+
+
+                <!-- FEATURES -->
+
+                <div class="ai-points">
+
+                    <div class="ai-point">
+
+                        <div class="point-icon">
+                            💬
+                        </div>
+
+                        <div>
+                            <h3>Instant Answers</h3>
+                            <p>
+                                Get quick responses to common
+                                healthcare-support questions.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="ai-point">
+
+                        <div class="point-icon">
+                            🏥
+                        </div>
+
+                        <div>
+                            <h3>Support Guidance</h3>
+                            <p>
+                                Learn how to find appropriate
+                                healthcare support.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="ai-point">
+
+                        <div class="point-icon">
+                            🔒
+                        </div>
+
+                        <div>
+                            <h3>Simple & Private</h3>
+                            <p>
+                                Designed for general information,
+                                not medical diagnosis.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= CHAT BOX ================= -->
+
+            <div class="ai-chat">
+
+                <!-- HEADER -->
+
+                <div class="chat-header">
+
+                    <div class="assistant-avatar">
+                        🤖
+                    </div>
+
+                    <div>
+                        <h2>Jarurat Care Assistant</h2>
+
+                        <p>
+                            Healthcare Support AI
+                        </p>
+                    </div>
+
+                    <div class="online-indicator">
+                        ●
+                    </div>
+
+                </div>
+
+
+                <!-- CONVERSATION -->
+
+                <div class="conversation" id="conversation">
+
+                    <!-- Initial Bot Message -->
+
+                    <div class="bot-message">
+
+                        <div class="message-avatar">
+                            🤖
+                        </div>
+
+                        <div class="message-content">
+
+                            <span class="message-name">
+                                Jarurat Assistant
+                            </span>
+
+                            <p>
+                                Hello! 👋 I'm the Jarurat Care
+                                support assistant. How can I help
+                                you today?
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ================= INPUT ================= -->
+
+                <form class="ai-form"
+                      id="chatForm">
+
+                    <div class="input-wrapper">
+
+                        <textarea
+                            id="question"
+                            name="question"
+                            rows="2"
+                            placeholder="Type your healthcare-support question..."
+                            required></textarea>
+
+                        <button
+                            type="submit"
+                            class="send-button"
+                            title="Ask Assistant">
+
+                            ➤
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- ================= SUGGESTIONS ================= -->
+
+                <div class="suggestions">
+
+                    <span>TRY ASKING</span>
+
+                    <div class="suggestion-list">
+
+                        <button type="button"
+                                onclick="askQuestion('How can I get healthcare support?')">
+                            💬 Healthcare support
+                        </button>
+
+                        <button type="button"
+                                onclick="askQuestion('What should I do in an emergency?')">
+                            🚨 Emergency help
+                        </button>
+
+                        <button type="button"
+                                onclick="askQuestion('How can I make a doctor appointment?')">
+                            👨‍⚕️ Doctor appointment
+                        </button>
+
+                        <button type="button"
+                                onclick="askQuestion('Can I get information about medicines?')">
+                            💊 Medicines
+                        </button>
+
+                    </div>
+
+                    <div class="input-note">
+                        General healthcare information only.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DISCLAIMER ================= -->
+
+        <div class="ai-disclaimer">
+
+            <div class="disclaimer-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <strong>
+                    Important healthcare notice
+                </strong>
+
+                <p>
+                    This assistant provides general healthcare-support
+                    information and is not a replacement for a qualified
+                    doctor or emergency medical service. If you are facing
+                    a serious or life-threatening emergency, contact your
+                    local emergency service immediately.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+            🏥 Jarurat Care
+        </div>
+
+        <p>
+            Healthcare Support Assistant
+        </p>
+
+        <small>
+            © 2026 Jarurat Care | Built with Flask, HTML, CSS & JavaScript
+        </small>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        const chatForm = document.getElementById("chatForm");
+
+        const questionInput =
+            document.getElementById("question");
+
+        const conversation =
+            document.getElementById("conversation");
+
+
+        /* -----------------------------------------
+           ADD MESSAGE
+        ----------------------------------------- */
+
+        function addMessage(message, type) {
+
+            if (type === "user") {
+
+                conversation.innerHTML += `
+
+                    <div class="user-message">
+
+                        <div class="user-message-content">
+
+                            <p>${message}</p>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            } else {
+
+                conversation.innerHTML += `
+
+                    <div class="bot-message">
+
+                        <div class="message-avatar">
+                            🤖
+                        </div>
+
+                        <div class="message-content">
+
+                            <span class="message-name">
+                                Jarurat Assistant
+                            </span>
+
+                            <p>
+                                ${message}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                `;
+            }
+
+            conversation.scrollTop =
+                conversation.scrollHeight;
+        }
+
+
+        /* -----------------------------------------
+           ASK QUESTION
+        ----------------------------------------- */
+
+        function askQuestion(question) {
+
+            questionInput.value = question;
+
+            chatForm.dispatchEvent(
+                new Event("submit")
+            );
+        }
+
+
+        /* -----------------------------------------
+           CHAT FORM
+        ----------------------------------------- */
+
+        chatForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+                const question =
+                    questionInput.value.trim();
+
+                if (!question) {
+                    return;
+                }
+
+
+                /* USER MESSAGE */
+
+                addMessage(question, "user");
+
+                questionInput.value = "";
+
+
+                /* TYPING */
+
+                const typingId =
+                    "typing-" + Date.now();
+
+                conversation.innerHTML += `
+
+                    <div class="bot-message"
+                         id="${typingId}">
+
+                        <div class="message-avatar">
+                            🤖
+                        </div>
+
+                        <div class="message-content">
+
+                            <span class="message-name">
+                                Jarurat Assistant
+                            </span>
+
+                            <div class="typing">
+
+                                <span></span>
+                                <span></span>
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+                conversation.scrollTop =
+                    conversation.scrollHeight;
+
+
+                try {
+
+                    /* SEND QUESTION TO FLASK */
+
+                    const response =
+                        await fetch("/ask", {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                question: question
+                            })
+
+                        });
+
+
+                    const data =
+                        await response.json();
+
+
+                    /* REMOVE TYPING */
+
+                    const typing =
+                        document.getElementById(typingId);
+
+                    if (typing) {
+                        typing.remove();
+                    }
+
+
+                    /* RESPONSE */
+
+                    if (data.response) {
+
+                        addMessage(
+                            data.response,
+                            "bot"
+                        );
+
+                    } else {
+
+                        addMessage(
+                            "I'm sorry, I couldn't find a suitable answer. Please try another question.",
+                            "bot"
+                        );
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    const typing =
+                        document.getElementById(typingId);
+
+                    if (typing) {
+                        typing.remove();
+                    }
+
+                    addMessage(
+                        "Sorry, I'm temporarily unable to respond. Please try again.",
+                        "bot"
+                    );
+
+                    console.error(error);
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
